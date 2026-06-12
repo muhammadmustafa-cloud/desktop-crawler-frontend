@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-md: 0.75rem;
+
+  /* Custom Animations */
+  --animate-fade-in: fadeIn 0.5s ease-out forwards;
+  --animate-slide-up: slideUp 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@layer base {
+  :root {
+    /* Ultra Clean Light Theme */
+    --background: #f8fafc; /* Slate 50 */
+    --foreground: #0f172a; /* Slate 900 */
+    --card: #ffffff; /* White */
+    --card-foreground: #0f172a;
+    --popover: #ffffff;
+    --popover-foreground: #0f172a;
+    
+    --primary: #4f46e5; /* Indigo 600 */
+    --primary-foreground: #ffffff;
+    
+    --secondary: #f1f5f9; /* Slate 100 */
+    --secondary-foreground: #0f172a;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b; /* Slate 500 */
+    
+    --accent: #e0e7ff; /* Indigo 100 */
+    --accent-foreground: #3730a3; /* Indigo 800 */
+    
+    --destructive: #ef4444; /* Red 500 */
+    --destructive-foreground: #ffffff;
+    
+    --border: #e2e8f0; /* Slate 200 */
+    --input: #e2e8f0;
+    --ring: #4f46e5;
+  }
+ 
+  .dark {
+    /* Ultra Premium Dark Theme */
+    --background: #09090b; /* Zinc 950 */
+    --foreground: #fafafa; /* Zinc 50 */
+    --card: #18181b; /* Zinc 900 */
+    --card-foreground: #fafafa;
+    --popover: #18181b;
+    --popover-foreground: #fafafa;
+    
+    --primary: #6366f1; /* Indigo 500 */
+    --primary-foreground: #ffffff;
+    
+    --secondary: #27272a; /* Zinc 800 */
+    --secondary-foreground: #fafafa;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa; /* Zinc 400 */
+    
+    --accent: #312e81; /* Indigo 900 */
+    --accent-foreground: #e0e7ff; /* Indigo 100 */
+    
+    --destructive: #ef4444; /* Red 500 */
+    --destructive-foreground: #fafafa;
+    
+    --border: #27272a;
+    --input: #27272a;
+    --ring: #6366f1;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Custom scrollbar for webkit (Electron) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-muted);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-muted-foreground);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--color-card);
+    @supports (backdrop-filter: blur(12px)) {
+      background: color-mix(in srgb, var(--color-card) 85%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    border: 1px solid var(--color-border);
+  }
+  
+  .glass-card {
+    background: var(--color-card);
+    @supports (backdrop-filter: blur(16px)) {
+      background: linear-gradient(145deg, color-mix(in srgb, var(--color-card) 90%, transparent) 0%, color-mix(in srgb, var(--color-background) 60%, transparent) 100%);
+      backdrop-filter: blur(16px);
+    }
+    border: 1px solid var(--color-border);
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  }
+}
