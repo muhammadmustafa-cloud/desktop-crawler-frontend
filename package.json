@@ -27,8 +27,15 @@
       "icon": "public/vite.svg"
     },
     "mac": {
-      "target": "dmg",
-      "category": "public.app-category.business"
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
     },
     "nsis": {
       "oneClick": false,
