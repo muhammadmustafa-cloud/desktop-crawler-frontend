@@ -1,4 +1,3 @@
-import React from 'react';
 import { Activity, Cpu, HardDrive, Network, CheckCircle2, Clock, Zap } from 'lucide-react';
 
 const recentActivities = [

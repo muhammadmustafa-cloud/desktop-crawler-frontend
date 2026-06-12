@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { UserPlus, Trash2, Shield, MoreVertical } from 'lucide-react';
 import toast from 'react-hot-toast';
-import api from '../services/api';
 
 interface User {
   _id: string;

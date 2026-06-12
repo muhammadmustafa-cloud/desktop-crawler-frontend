@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import { LogIn, Activity } from 'lucide-react';
-import api from '../services/api';
-import { useAuthStore } from '../store/useAuthStore';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { LogIn, Activity } from "lucide-react";
+import { useAuthStore } from "../store/useAuthStore";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -18,19 +17,18 @@ export default function LoginPage() {
     try {
       // MOCK LOGIN FOR CLIENT DEMO (Bypasses backend)
       await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate 1s network delay
-      
+
       const mockUserData = {
-        _id: 'client-demo-123',
-        name: 'Client Demo',
+        id: "client-demo-123",
+        name: "Client Demo",
         email: email,
-        token: 'mock-jwt-token-xyz'
       };
-      
+
       login(mockUserData);
-      toast.success('Access Granted (Demo Mode)');
-      navigate('/dashboard');
+      toast.success("Access Granted (Demo Mode)");
+      navigate("/dashboard");
     } catch (error: any) {
-      toast.error('Invalid credentials');
+      toast.error("Invalid credentials");
     } finally {
       setLoading(false);
     }
@@ -48,14 +46,23 @@ export default function LoginPage() {
           <div className="mx-auto w-12 h-12 bg-primary/20 text-primary rounded-xl flex items-center justify-center mb-4 ring-1 ring-primary/30">
             <Activity size={24} />
           </div>
-          <h2 className="text-2xl font-bold tracking-tight text-foreground">Welcome Back</h2>
-          <p className="text-sm text-muted-foreground mt-2">Sign in to access your command center</p>
+          <h2 className="text-2xl font-bold tracking-tight text-foreground">
+            Welcome Back
+          </h2>
+          <p className="text-sm text-muted-foreground mt-2">
+            Sign in to access your command center
+          </p>
         </div>
-        
+
         <form className="space-y-5" onSubmit={handleLogin}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="email-address" className="block text-sm font-medium text-muted-foreground mb-1">Email Address</label>
+              <label
+                htmlFor="email-address"
+                className="block text-sm font-medium text-muted-foreground mb-1"
+              >
+                Email Address
+              </label>
               <input
                 id="email-address"
                 name="email"
@@ -68,7 +75,12 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-muted-foreground mb-1">Password</label>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-muted-foreground mb-1"
+              >
+                Password
+              </label>
               <input
                 id="password"
                 name="password"
@@ -92,7 +104,10 @@ export default function LoginPage() {
             ) : (
               <>
                 Sign In
-                <LogIn size={18} className="group-hover:translate-x-1 transition-transform" />
+                <LogIn
+                  size={18}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
               </>
             )}
           </button>
